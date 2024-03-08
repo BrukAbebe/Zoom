@@ -20,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
 }).then((stream) =>{
     myVideoStream=stream;
     addVideoStream(myVideo,stream);
-    console.log(stream.getVideoTracks()[0].enabled);
+    // console.log(stream.getVideoTracks()[0].enabled);
 
     myPeer.on('call',(call) =>{
         call.answer(stream);
@@ -37,11 +37,10 @@ navigator.mediaDevices.getUserMedia({
     });
 
     let text = $('#chat_message');
-    console.log(text);
+    
 
     $('html').keydown(function(e){
-        console.log('Key pressed:', e.which);
-        console.log('Input value:', text.val());
+       
         if(e.which === 13 && text.val().length !== 0){
             socket.emit('message' , text.val());
             text.val('');
